@@ -53,7 +53,7 @@ jobs:
 
     - name: Build and push DOcker image
       run: |
-        docker build . -t mycontainer.azurecr.io/my-pp:${{ github.sha }}
+        docker build . -t mycontainer.azurecr.io/my-app:${{ github.sha }}
         docker push mycontainer.azurecr.io/my-app:${{ github.sha }}    
 
   deploy:
