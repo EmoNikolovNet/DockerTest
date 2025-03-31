@@ -43,15 +43,18 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - uses: azure/docker-login@v1
+    
+    - name: Login in ACR
+      uses: azure/docker-login@v1
       with:
         login-server: emregistry1.azurecr.io
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
 
-    - run: |
-        docker build . -t mycontainer.azurecr.io/containerapp:${{ github.sha }}
-        docker push mycontainer.azurecr.io/containerapp:${{ github.sha }}    
+    - name: Build and push DOcker image
+      run: |
+        docker build . -t mycontainer.azurecr.io/my-pp:${{ github.sha }}
+        docker push mycontainer.azurecr.io/my-app:${{ github.sha }}    
 
   deploy:
     permissions:
