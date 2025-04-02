@@ -1,3 +1,4 @@
+using Azure.Monitor.OpenTelemetry.AspNetCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 
@@ -18,6 +19,8 @@ builder.Services.AddSwaggerGen(options =>
     //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     //options.IncludeXmlComments(xmlPath);
 });
+
+builder.Services.AddOpenTelemetry().UseAzureMonitor();
 
 var app = builder.Build();
 
