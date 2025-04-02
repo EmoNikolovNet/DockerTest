@@ -88,13 +88,22 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Deploy to Azure Container Apps
-        uses: azure/container-apps-deploy-action@v1
-        with:
-          imageToDeploy: ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.AZURE_WEBAPP_NAME }}:${{ github.sha }}
-          resourceGroup: ${{ env.RESOURCE_GROUP }}
-          containerAppName:  ${{ env.AZURE_WEBAPP_NAME }}
-          environmentVariables: |
-            ASPNETCORE_ENVIRONMENT=Development
+        run: |
+          az containerapp update
+          --name ${{ env.AZURE_WEBAPP_NAME }}
+          --resource-group ${{ env.RESOURCE_GROUP }}
+          --image ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.AZURE_WEBAPP_NAME }}:${{ github.sha }}
+          --registry-server ${{ env.AZURE_CONTAINER_REGISTRY }}
+          --registry-username ${{ secrets.REGISTRY_USERNAME }}
+          --registry-password ${{ secrets.REGISTRY_PASSWORD }}
+          --debug
+        #uses: azure/container-apps-deploy-action@v1
+        #with:
+         # imageToDeploy: ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.AZURE_WEBAPP_NAME }}:${{ github.sha }}
+         # resourceGroup: ${{ env.RESOURCE_GROUP }}
+         # containerAppName:  ${{ env.AZURE_WEBAPP_NAME }}
+         # environmentVariables: |
+          #  ASPNETCORE_ENVIRONMENT=Development
         
       #- name: Deploy to Azure Web App
        # id: deploy-to-webapp
