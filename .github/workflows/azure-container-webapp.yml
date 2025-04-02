@@ -68,8 +68,8 @@ jobs:
         tags: ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.AZURE_WEBAPP_NAME }}:${{ github.sha }} 
         file: ./Dockerfile
       #run: |
-       # docker build . -t emregistry1.azurecr.io/my-app:${{ github.sha }}
-        #docker push emregistry1.azurecr.io/my-app:${{ github.sha }}    
+       # docker build . -t emregistry1.azurecr.io/{{ env.AZURE_WEBAPP_NAME }}:${{ github.sha }}
+        #docker push emregistry1.azurecr.io/{{ env.AZURE_WEBAPP_NAME }}:${{ github.sha }}    
 
   deploy:
     permissions:
