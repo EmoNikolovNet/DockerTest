@@ -93,7 +93,7 @@ jobs:
           --name ${{ env.AZURE_WEBAPP_NAME }}
           --resource-group ${{ env.RESOURCE_GROUP }}
           --image ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.AZURE_WEBAPP_NAME }}:${{ github.sha }}
-          --registry-server ${{ env.AZURE_CONTAINER_REGISTRY }}
+          --registry-server ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io
           --registry-username ${{ secrets.REGISTRY_USERNAME }}
           --registry-password ${{ secrets.REGISTRY_PASSWORD }}
           --debug
