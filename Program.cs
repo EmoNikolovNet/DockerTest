@@ -1,8 +1,6 @@
 using Azure.Monitor.OpenTelemetry.AspNetCore;
-using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.OpenApi.Models;
 using Serilog;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
