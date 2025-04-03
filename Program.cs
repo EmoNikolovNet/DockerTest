@@ -31,7 +31,11 @@ Log.Logger = new LoggerConfiguration()
 builder.Host.UseSerilog();
 
 
-builder.Services.AddOpenTelemetry().UseAzureMonitor();
+builder.Services.AddOpenTelemetry().UseAzureMonitor(options => {
+    options.ConnectionString = Environment.GetEnvironmentVariable("APPLICATIONINSIGHTS_CONNECTION_STRING");
+});
+
+
 
 var app = builder.Build();
 
