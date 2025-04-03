@@ -106,6 +106,7 @@ jobs:
           containerAppName:  ${{ env.CONTAINERAPP }}
           environmentVariables: |
             ASPNETCORE_ENVIRONMENT=Development
+            APPLICATIONINSIGHTS_CONNECTION_STRING=${{ secrets.APPLICATIONINSIGHTS_CONNECTION_STRING }}
         
       #- name: Deploy to Azure Web App
        # id: deploy-to-webapp
